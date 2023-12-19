@@ -1,0 +1,27 @@
+/* header.component.css */
+
+.app-header {
+    background-color: #2196F3; /* Blue background color */
+    color: #ffffff; /* White text color */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-menu a {
+    color: #ffffff; /* White text color for navigation links */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+  }
+  
+  .nav-menu a:hover {
+    text-decoration: underline;
+  }
+  

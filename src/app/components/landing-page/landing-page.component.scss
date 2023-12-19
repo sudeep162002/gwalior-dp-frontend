@@ -1,0 +1,42 @@
+/* wide-card.component.css */
+
+/* wide-card.component.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  gap: 39px; /* Add a gap of 100px between container items */
+}
+
+
+.mat-card {
+  width: 77%;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #8fb339;
+  color: #485460;
+}
+
+.mat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mat-card-header {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.mat-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.mat-card-content {
+  color: #566573;
+}

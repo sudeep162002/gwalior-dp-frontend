@@ -1,1 +1,14 @@
-<p>landing-page works!</p>
+<!-- wide-card.component.html -->
+
+<div class="container">
+  <mat-card *ngFor="let card of cardArray" class="wide-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{ card.title }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ card.content }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
