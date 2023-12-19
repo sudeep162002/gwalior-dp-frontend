@@ -1,5 +1,5 @@
 /* wide-card.component.css */
-
+@import '~@fortawesome/fontawesome-free/css/all.css';
 /* wide-card.component.css */
 
 .container {
@@ -14,6 +14,7 @@
 
 .mat-card {
   width: 77%;
+  cursor: pointer;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -39,4 +40,35 @@
 
 .mat-card-content {
   color: #566573;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.search-input {
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #2980b9;
 }

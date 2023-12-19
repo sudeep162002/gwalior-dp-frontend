@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import { CardDetailsComponent } from '../card-details/card-details.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -8,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public dialog: MatDialog) { }
   // openDialog() {
   //   this.modalService.openWideCardDialog();
   // }
@@ -33,30 +32,35 @@ export class LandingPageComponent implements OnInit {
     { title: 'Card 3', content: 'Content for Card 3' },
     { title: 'Card 3', content: 'Content for Card 3' },
     { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    { title: 'Card 3', content: 'Content for Card 3' },
-    
+  
     // Add more cards as needed
   ];
+
+  searchTerm: string = ''; // Add a property for the search term
+  filteredCardArray: any[] = [];
+
+
+  openCardDetailsDialog(card: any): void {
+    this.dialog.open(CardDetailsComponent, {
+      width: '400px', // Adjust the width as needed
+      data: card
+    });
+  }
   ngOnInit(): void {
   }
 
+
+  search(): void {
+    // Perform search logic based on the searchTerm
+    this.filteredCardArray = this.cardArray.filter(card =>
+      card.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      card.content.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
 }
+
+
+
+
+

@@ -10,18 +10,22 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { CardDetailsComponent } from './components/card-details/card-details.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     ErrorComponent,
     LandingPageComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CardDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
+    FormsModule,
     MatCardModule,
     BrowserAnimationsModule
   ],

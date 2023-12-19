@@ -1,7 +1,14 @@
-<!-- wide-card.component.html -->
+<!-- landing-page.component.html -->
+
+<div class="search-bar">
+  <input class="search-input" type="text" [(ngModel)]="searchTerm" placeholder="Family-Id/member-Name....">
+  <button class="search-button" (click)="search()">
+    <i class="fas fa-search"></i> <!-- Use "fas" for solid icons, or "far" for regular icons -->
+  </button>
+</div>
 
 <div class="container">
-  <mat-card *ngFor="let card of cardArray" class="wide-card">
+  <mat-card *ngFor="let card of cardArray" class="wide-card" (click)="openCardDetailsDialog(card)">
     <mat-card-header>
       <mat-card-title>
         {{ card.title }}
@@ -12,3 +19,4 @@
     </mat-card-content>
   </mat-card>
 </div>
+
