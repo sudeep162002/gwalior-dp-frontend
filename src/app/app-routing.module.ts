@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ErrorComponent} from './components/error/error.component'
 import {LandingPageComponent} from './components/landing-page/landing-page.component'
+import {AddNewComponent} from './components/add-new/add-new.component'
 
 const routes: Routes = [
   {
@@ -9,14 +10,18 @@ const routes: Routes = [
     component: LandingPageComponent
   },
   // {
-  //   path: 'user',
+  //   path: 'add-new',
   //   loadChildren: () => import('./views/admin-view/admin-view.module').then(m => m.AdminViewModule),
   //   canActivate: [AuthGuardService]
   // },
+  // {
+  //   path: '',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full'
+  // },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'add-new',
+    component: AddNewComponent
   },
   {
     path: '**',

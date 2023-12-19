@@ -12,6 +12,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
 import { FormsModule } from '@angular/forms';
+import { AddNewComponent } from './components/add-new/add-new.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +21,14 @@ import { FormsModule } from '@angular/forms';
     LandingPageComponent,
     HeaderComponent,
     FooterComponent,
-    CardDetailsComponent
+    CardDetailsComponent,
+    AddNewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
+    ReactiveFormsModule,
     FormsModule,
     MatCardModule,
     BrowserAnimationsModule

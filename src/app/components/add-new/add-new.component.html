@@ -1,0 +1,44 @@
+<!-- family-form.component.html -->
+
+<form [formGroup]="familyForm" (ngSubmit)="onSubmit()">
+  <label for="fullName">Full Name:</label>
+  <input type="text" id="fullName" formControlName="fullName" required>
+
+  <label for="ritwickName">Ritwick Name:</label>
+  <input type="text" id="ritwickName" formControlName="ritwickName">
+
+  <label for="swastyayani">Swastyayani:</label>
+  <input type="text" id="swastyayani" formControlName="swastyayani">
+
+  <label for="istavrity">Istavrity:</label>
+  <input type="text" id="istavrity" formControlName="istavrity">
+
+  <label for="acharyavrity">Acharyavrity:</label>
+  <input type="text" id="acharyavrity" formControlName="acharyavrity">
+
+  <label for="dakshina">Dakshina:</label>
+  <input type="text" id="dakshina" formControlName="dakshina">
+
+  <label for="sangathani">Sangathani:</label>
+  <input type="text" id="sangathani" formControlName="sangathani">
+
+  <label for="ritwicki">Ritwicki:</label>
+  <input type="text" id="ritwicki" formControlName="ritwicki">
+
+  <label for="proname">Proname:</label>
+  <input type="text" id="proname" formControlName="proname">
+
+  <label for="anandabazar">Anandabazar:</label>
+  <input type="text" id="anandabazar" formControlName="anandabazar">
+
+  <label for="srimandir">Srimandir:</label>
+  <input type="text" id="srimandir" formControlName="srimandir">
+
+  <label for="parivrity">Parivrity:</label>
+  <input type="text" id="parivrity" formControlName="parivrity">
+
+  <label for="misc">Miscellaneous:</label>
+  <input type="text" id="misc" formControlName="misc">
+
+  <button type="submit">Submit</button>
+</form>
