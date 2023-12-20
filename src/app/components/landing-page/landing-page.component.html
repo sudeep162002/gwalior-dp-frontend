@@ -8,14 +8,14 @@
 </div>
 
 <div class="container">
-  <mat-card *ngFor="let card of cardArray" class="wide-card" (click)="openCardDetailsDialog(card)">
+  <mat-card *ngFor="let card of aggregatedUsers" class="wide-card" (click)="openCardDetailsDialog(card)">
     <mat-card-header>
       <mat-card-title>
-        {{ card.title }}
+        {{ card[0] }}
       </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <p>{{ card.content }}</p>
+    <mat-card-content  *ngFor="let u of card[1]">
+      <p>{{ u.fullName }}</p>
     </mat-card-content>
   </mat-card>
 </div>
