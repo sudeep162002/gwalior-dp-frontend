@@ -11,6 +11,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class CardDetailsComponent {
 // card: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public card: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public family: any) { }
 
 }

@@ -1,0 +1,16 @@
+.user-details {
+    max-height: 500px; /* Set a maximum height */
+    overflow-y: auto; /* Add a scrollbar if content exceeds the height */
+    border: 1px solid #ccc; /* Optional: Add a border for visualization */
+    display: flex;
+    justify-content: center;
+  }
+  
+.par{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+
+  
