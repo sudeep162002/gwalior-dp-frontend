@@ -34,6 +34,8 @@ export class LandingPageComponent implements OnInit {
  // Assuming aggregatedUsers is already populated
   aggregatedUsers: [string, User[]][]; 
 
+
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
@@ -74,27 +76,42 @@ export class LandingPageComponent implements OnInit {
 
       
   }
-
-total(card: any):any{
-
-  total:Number;
-  // this.total=5;
-
-
-
+  cti(value: string): number | null {
+    const intValue = parseInt(value, 10);
   
+    // Check if the result is NaN (Not a Number)
+    if (isNaN(intValue)) {
+      console.error(`Failed to convert "${value}" to an integer.`);
+      return null; // or handle the error in another way
+    }
   
-}
-familyTotal(card: any):any{
+    return intValue;
+  }
+  total(card: any): number {
+    let total: number;
+    total = 0; // Or whatever value you want to assign to total
+    console.log('Individual total is', card);
+    Object.keys(card).forEach(key => {
+      if(key==="swastyayani"||key==='istavrity'|| key==='acharyavrity'|| key==='dakshina'|| key==='sangathani'|| key==='ritwicki' ||key==='proname' ||key==='anandabazar' ||key==='srimandir' ||key==='parivrity'){
+        console.log(key);
+        let v=this.cti(card[key]);
+        if(v){
+          
+          total+=v;
+        }
+      }
+    });
+    return total;
+  }
 
-  total:Number;
-  // this.total=5;
+  Familytotal(card: any): number {
+    let total: number;
+    // Your calculation logic here
+    total = 5; // Placeholder value, replace with your logic
+    console.log('family total is', card);
 
-
-
-  
-  
-}
+    return total;
+  }
 
 
 // Assuming aggregatedUsers is defined as [string, User[]][]
