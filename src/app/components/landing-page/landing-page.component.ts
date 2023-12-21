@@ -2,17 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { CardDetailsComponent } from '../card-details/card-details.component';
 import {EditComponent} from '../edit/edit.component';
 import { ApiService } from '../../../services/api.service';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialogRef,MatDialog } from '@angular/material/dialog';
 import {User} from '../../types/userData';
 import { DataSource } from '@angular/cdk/collections';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
+  
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,private apiService: ApiService) { }
+  constructor(public dialog: MatDialog,private apiService: ApiService,private _snackBar: MatSnackBar) { }
   // openDialog() {
   //   this.modalService.openWideCardDialog();
   // }
@@ -28,6 +34,9 @@ export class LandingPageComponent implements OnInit {
  // Assuming aggregatedUsers is already populated
   aggregatedUsers: [string, User[]][]; 
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 
   openCardDetailsDialog(user: User): void {
     this.dialog.open(CardDetailsComponent, {
@@ -37,9 +46,15 @@ export class LandingPageComponent implements OnInit {
   }
 
   openEditDialog(user: User): void {
-    this.dialog.open(EditComponent, {
+    const dialogRef =this.dialog.open(EditComponent, {
       maxHeight: '650px',
       data: user
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result data sent from the dialog
+      // console.log('Dialog closed with result:', result);
+      if(result && result.resultData)this.openSnackBar(result.resultData,'close!');
     });
   }
   ngOnInit(): void {
@@ -59,6 +74,27 @@ export class LandingPageComponent implements OnInit {
 
       
   }
+
+total(card: any):any{
+
+  total:Number;
+  // this.total=5;
+
+
+
+  
+  
+}
+familyTotal(card: any):any{
+
+  total:Number;
+  // this.total=5;
+
+
+
+  
+  
+}
 
 
 // Assuming aggregatedUsers is defined as [string, User[]][]
@@ -86,7 +122,19 @@ delete(familyId: string): void {
   }
 
 }
-
+// @Component({
+//   selector: 'sucess-snackbar',
+//   templateUrl: 'sucess-snackbar.html',
+//   styles: [
+//     `
+//     .example-pizza-party {
+//       color: green;
+//     }
+//   `,
+//   ],
+//   standalone: true,
+// })
+// export class PizzaPartyComponent {}
 
 
 

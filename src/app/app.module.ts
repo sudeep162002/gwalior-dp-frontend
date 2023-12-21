@@ -15,6 +15,11 @@ import { FormsModule } from '@angular/forms';
 import { AddNewComponent } from './components/add-new/add-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './components/edit/edit.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +38,8 @@ import { EditComponent } from './components/edit/edit.component';
     ReactiveFormsModule,
     FormsModule,
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule, MatInputModule, MatButtonModule,MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

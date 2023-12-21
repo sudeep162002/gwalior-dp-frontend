@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {User} from '../../types/userData';
 import { ApiService } from '../../../services/api.service';
+import {LandingPageComponent} from '../landing-page/landing-page.component'
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -10,7 +11,7 @@ import { ApiService } from '../../../services/api.service';
 })
 export class EditComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) public family: any,private apiService: ApiService) {
+  constructor(private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) public family: any,private apiService: ApiService,private dialogRef: MatDialogRef<EditComponent>) {
     this.createForm();
   }
 
@@ -55,8 +56,13 @@ export class EditComponent implements OnInit {
     // console.log(this.family[0])
     this.apiService.put(this.family[0], this.updatedUser)
       .subscribe(data => {
-        console.log(data.message);
-        
+        // console.log(data.message);
+        if(data.message){
+          this.dialogRef.close({ resultData: data.message });
+        }
       });
   }
+
+
+  
 }

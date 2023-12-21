@@ -28,14 +28,14 @@
     <mat-card-content  *ngFor="let u of card[1]">
       <div class="mcc-main">
         <p>{{ u.fullName }}</p>
-        <div class="indi-total">800</div>
+        <div class="indi-total">{{total(u)}}</div>
       </div>
       
     </mat-card-content>
     <mat-card-content >
       <div class="mcc-main">
         <p>Total</p>
-        <div class="indi-total">8452</div>
+        <div class="indi-total">{{Familytotal(card[1])}}</div>
       </div>
       
     </mat-card-content>
