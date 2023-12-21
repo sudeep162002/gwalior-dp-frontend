@@ -6,10 +6,7 @@ import {MatDialogRef,MatDialog } from '@angular/material/dialog';
 import {User} from '../../types/userData';
 import { DataSource } from '@angular/cdk/collections';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -71,7 +68,7 @@ export class LandingPageComponent implements OnInit {
               this.aggregatedUsersObject[userId].push(user);
         });
         this.aggregatedUsers=Object.entries( this.aggregatedUsersObject);
-        console.log(this.aggregatedUsers);
+        // console.log(this.aggregatedUsers);
       });
 
       
@@ -90,7 +87,7 @@ export class LandingPageComponent implements OnInit {
   total(card: any): number {
     let total: number;
     total = 0; // Or whatever value you want to assign to total
-    console.log('Individual total is', card);
+    // console.log('Individual total is', card);
     Object.keys(card).forEach(key => {
       if(key==="swastyayani"||key==='istavrity'|| key==='acharyavrity'|| key==='dakshina'|| key==='sangathani'|| key==='ritwicki' ||key==='proname' ||key==='anandabazar' ||key==='srimandir' ||key==='parivrity'){
         // console.log(key);
@@ -107,9 +104,11 @@ export class LandingPageComponent implements OnInit {
   Familytotal(card: any): number {
     let total: number;
     // Your calculation logic here
-    total = 5; // Placeholder value, replace with your logic
-    console.log('family total is', card);
-
+    total = 0; // Placeholder value, replace with your logic
+    // console.log('family total object is', card);
+    for(let i=0;i<card.length;i++){
+      total+=this.total(card[i]);
+    }
     return total;
   }
 
@@ -136,6 +135,10 @@ delete(familyId: string): void {
       card.userId.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       card.fullName.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+
+  printDoc(): void{
+    console.log("printing initiated")
   }
 
 }

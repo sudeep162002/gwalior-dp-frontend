@@ -7,6 +7,12 @@
   </button>
 </div>
 
+<div class="print-par">
+  <div class="print" (click)="printDoc()" >
+    <i class="fas fa-print fa-4x"></i>
+  </div>
+</div>
+
 <div class="container">
   <mat-card *ngFor="let card of aggregatedUsers" class="wide-card" >
     <div class="ch-par">
@@ -43,4 +49,6 @@
 
   </mat-card>
 </div>
+
+
 

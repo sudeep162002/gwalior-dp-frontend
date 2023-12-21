@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ApiService } from '../../../services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {MatDialogRef,MatDialog } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-new',
   templateUrl: './add-new.component.html',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddNewComponent implements OnInit {
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private apiService: ApiService,private _snackBar: MatSnackBar) {
     this.createForm();
   }
 
@@ -22,26 +23,37 @@ export class AddNewComponent implements OnInit {
   
   createForm() {
     this.familyForm = this.fb.group({
-      id: ['', Validators.required],
+      userId: ['', Validators.required],
       fullName: ['', Validators.required],
-      ritwickName: ['Worker', Validators.required],
-      swastyayani: ['Swastyayani', Validators.required],
-      istavrity: ['Istavrity', Validators.required],
-      acharyavrity: ['Acharyavrity', Validators.required],
-      dakshina: ['Dakshina', Validators.required],
-      sangathani: ['Sangathani', Validators.required],
-      ritwicki: ['Ritwicki', Validators.required],
-      proname: ['Proname', Validators.required],
-      anandabazar: ['Anandabazar', Validators.required],
-      srimandir: ['Srimandir', Validators.required],
-      parivrity: ['Parivrity', Validators.required],
-      misc: ['Miscellaneous', Validators.required]
+      ritwickName: ['', Validators.required],
+      swastyayani: ['', Validators.required],
+      istavrity: ['', Validators.required],
+      acharyavrity: ['', Validators.required],
+      dakshina: ['', Validators.required],
+      sangathani: ['', Validators.required],
+      ritwicki: ['', Validators.required],
+      proname: ['', Validators.required],
+      anandabazar: ['', Validators.required],
+      srimandir: ['', Validators.required],
+      parivrity: ['', Validators.required],
+      misc: ['', Validators.required]
     });
   }
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
   onSubmit() {
     // Handle form submission logic here
     console.log('Form submitted:', this.familyForm.value);
+
+    this.apiService.post('insert-user', this.familyForm.value)
+      .subscribe(data => {
+        // console.log(data.message);
+        if(data){
+          console.log(data.message);
+          this.openSnackBar(data.message,'close!');
+        }
+      });
   }
 
 }
