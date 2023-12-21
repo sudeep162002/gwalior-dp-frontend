@@ -8,10 +8,13 @@ form {
     display: flex;
     flex-direction: column;
     // max-width: 400px;
-    
-    margin: auto;
+    margin-top: 24px;
+    // margin: auto;
+    margin-left: 15%;
+    margin-right: 20%;
     padding: 20px;
-    background-color: #2196F3; /* Blue background color */
+    padding-bottom: 65px;
+    background-color: #8fb339;; /* Blue background color */
     color: #ffffff; /* White text color */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -31,7 +34,7 @@ form {
   
   button {
     padding: 10px;
-    background-color: #ffffff; /* White background color */
+    background-color: #390698; /* White background color */
     color: #2196F3; /* Blue text color */
     border: none;
     border-radius: 5px;

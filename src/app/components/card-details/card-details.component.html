@@ -1,9 +1,26 @@
 <!-- card-details.component.html -->
 <div class="par">
 
+    <mat-card class="user-details" *ngFor="let card of family[1]">
+        <mat-card-content >
+            <p>Full Name: {{ card.fullName }}</p>
+            <p>Ritwick Name: {{ card.ritwickName }}</p>
+            <p>Swastyayani: {{ card.swastyayani }}</p>
+            <p>Istavrity: {{ card.istavrity }}</p>
+            <p>Acharyavrity: {{ card.acharyavrity }}</p>
+            <p>Dakshina: {{ card.dakshina }}</p>
+            <p>Sangathani: {{ card.sangathani }}</p>
+            <p>Ritwicki: {{ card.ritwicki }}</p>
+            <p>Proname: {{ card.proname }}</p>
+            <p>Anandabazar: {{ card.anandabazar }}</p>
+            <p>Srimandir: {{ card.srimandir }}</p>
+            <p>Parivrity: {{ card.parivrity }}</p>
+            <p>Misc: {{ card.misc }}</p>
+        </mat-card-content>
+    </mat-card>
 
-<div class="user-details" *ngFor="let card of family[1]">
-    <h1>{{ card.userId }}</h1>
+<!-- <div class="user-details" *ngFor="let card of family[1]">
+    
     <p>Full Name: {{ card.fullName }}</p>
     <p>Ritwick Name: {{ card.ritwickName }}</p>
     <p>Swastyayani: {{ card.swastyayani }}</p>
@@ -17,6 +34,6 @@
     <p>Srimandir: {{ card.srimandir }}</p>
     <p>Parivrity: {{ card.parivrity }}</p>
     <p>Misc: {{ card.misc }}</p>
-</div>
+</div> -->
 </div>
 

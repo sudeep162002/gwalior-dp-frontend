@@ -23,14 +23,14 @@ export class LandingPageComponent implements OnInit {
   cardArray : User[]=[];
   searchTerm: string = ''; // Add a property for the search term
   filteredCardArray: any[] = [];
- aggregatedUsersObject: { [userId: string]: User[] } = {};
+  aggregatedUsersObject: { [userId: string]: User[] } = {};
  // Assuming aggregatedUsers is already populated
-aggregatedUsers: [string, User[]][]; 
+  aggregatedUsers: [string, User[]][]; 
 
 
   openCardDetailsDialog(user: User): void {
     this.dialog.open(CardDetailsComponent, {
-      width: '400px', // Adjust the width as needed
+      maxHeight: '750px',
       data: user
     });
   }
@@ -51,6 +51,12 @@ aggregatedUsers: [string, User[]][];
 
       
   }
+
+
+// Assuming aggregatedUsers is defined as [string, User[]][]
+delete(familyId: string): void {
+  this.aggregatedUsers = this.aggregatedUsers.filter(([id, _]) => id !== familyId);
+}
 
   // aggrigateData(arr:User[]){
   //   let myMap = new Map();

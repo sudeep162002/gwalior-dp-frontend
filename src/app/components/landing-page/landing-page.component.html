@@ -8,15 +8,38 @@
 </div>
 
 <div class="container">
-  <mat-card *ngFor="let card of aggregatedUsers" class="wide-card" (click)="openCardDetailsDialog(card)">
-    <mat-card-header>
-      <mat-card-title>
-        {{ card[0] }}
-      </mat-card-title>
-    </mat-card-header>
+  <mat-card *ngFor="let card of aggregatedUsers" class="wide-card" >
+    <div class="ch-par">
+      <mat-card-header>
+        
+          <mat-card-title>
+            {{ card[0] }}
+          </mat-card-title>
+          <div class="icons-main">
+            <div class="edit"><i class="fas fa-edit"></i></div>
+            <div class="view" (click)="openCardDetailsDialog(card)"><i class="fas fa-eye"></i></div>
+            <div class="delete"(click)="delete(card[0])"><i class="fas fa-trash-alt"></i></div>
+          </div>
+          <!-- <div class="checkbox"><i class="fas fa-trash-alt"></i></div> -->
+        
+        
+      </mat-card-header>
+  </div>
     <mat-card-content  *ngFor="let u of card[1]">
-      <p>{{ u.fullName }}</p>
+      <div class="mcc-main">
+        <p>{{ u.fullName }}</p>
+        <div class="indi-total">800</div>
+      </div>
+      
     </mat-card-content>
+    <mat-card-content >
+      <div class="mcc-main">
+        <p>Total</p>
+        <div class="indi-total">8452</div>
+      </div>
+      
+    </mat-card-content>
+
   </mat-card>
 </div>
 
