@@ -51,5 +51,20 @@ export class ApiService {
     });
   }
 
+  put(userId: string, data: any): Observable<any> {
+    const url = `${this.baseURL}/update-user/${userId}`;
+    return new Observable(observer => {
+      axios.put(url, data, this.getAxiosConfig())
+        .then(response => {
+          observer.next(response.data);
+          observer.complete();
+        })
+        .catch(error => {
+          observer.error(error);
+        });
+    });
+  }
+  
+
   // Add methods for other HTTP methods as needed (e.g., put, delete, etc.)
 }

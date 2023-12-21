@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardDetailsComponent } from '../card-details/card-details.component';
+import {EditComponent} from '../edit/edit.component';
 import { ApiService } from '../../../services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import {User} from '../../types/userData';
@@ -30,7 +31,14 @@ export class LandingPageComponent implements OnInit {
 
   openCardDetailsDialog(user: User): void {
     this.dialog.open(CardDetailsComponent, {
-      maxHeight: '750px',
+      maxHeight: '650px',
+      data: user
+    });
+  }
+
+  openEditDialog(user: User): void {
+    this.dialog.open(EditComponent, {
+      maxHeight: '650px',
       data: user
     });
   }

@@ -14,6 +14,7 @@ import { CardDetailsComponent } from './components/card-details/card-details.com
 import { FormsModule } from '@angular/forms';
 import { AddNewComponent } from './components/add-new/add-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditComponent } from './components/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     CardDetailsComponent,
-    AddNewComponent
+    AddNewComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@
             {{ card[0] }}
           </mat-card-title>
           <div class="icons-main">
-            <div class="edit"><i class="fas fa-edit"></i></div>
+            <div class="edit" (click)="openEditDialog(card)"><i class="fas fa-edit"></i></div>
             <div class="view" (click)="openCardDetailsDialog(card)"><i class="fas fa-eye"></i></div>
             <div class="delete"(click)="delete(card[0])"><i class="fas fa-trash-alt"></i></div>
           </div>
