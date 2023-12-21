@@ -93,7 +93,7 @@ export class LandingPageComponent implements OnInit {
     console.log('Individual total is', card);
     Object.keys(card).forEach(key => {
       if(key==="swastyayani"||key==='istavrity'|| key==='acharyavrity'|| key==='dakshina'|| key==='sangathani'|| key==='ritwicki' ||key==='proname' ||key==='anandabazar' ||key==='srimandir' ||key==='parivrity'){
-        console.log(key);
+        // console.log(key);
         let v=this.cti(card[key]);
         if(v){
           
