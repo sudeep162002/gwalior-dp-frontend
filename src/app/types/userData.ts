@@ -13,4 +13,5 @@ export type User = {
     srimandir?: string;
     parivrity?: string;
     misc?: string;
+    total?:number;
   };

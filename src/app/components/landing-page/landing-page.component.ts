@@ -74,16 +74,17 @@ export class LandingPageComponent implements OnInit {
       
   }
   cti(value: string): number | null {
-    const intValue = parseInt(value, 10);
+    const floatValue = parseFloat(value);
   
     // Check if the result is NaN (Not a Number)
-    if (isNaN(intValue)) {
-      console.error(`Failed to convert "${value}" to an integer.`);
+    if (isNaN(floatValue)) {
+      console.error(`Failed to convert "${value}" to a float.`);
       return null; // or handle the error in another way
     }
   
-    return intValue;
+    return floatValue;
   }
+  
   total(card: any): number {
     let total: number;
     total = 0; // Or whatever value you want to assign to total
@@ -151,15 +152,31 @@ delete(familyId: string): void {
   
       // Add 5 empty rows after each set of rows (excluding the last set)
       if (i < this.aggregatedUsers.length - 1) {
-        for (let j = 0; j < 5; j++) {
-          allData.push({});
+        for (let j = 0; j < 3; j++) {
+          if (j === 2) {
+            // When j == 2, add column names row
+           let columnNames = Object.keys(jsonData[0]);
+            const columnNamesRow: any = {};
+            columnNames.forEach(column => {
+              columnNamesRow[column] = column;
+            });
+            allData.push(columnNamesRow);
+          }
+          else allData.push({});
+
         }
       }
+  
+      // Append total property to each User object
+      jsonData.forEach(user => {
+        user.total = this.total(user);
+      });
     }
   
     // Download the final aggregated data
     this.downloadAllData(allData);
   }
+  
   
   private downloadAllData(jsonData: User[]): void {
     this.excelService.convertJsonToXlsx(jsonData).subscribe((blob: Blob) => {
