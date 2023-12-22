@@ -6,7 +6,7 @@ import {MatDialogRef,MatDialog } from '@angular/material/dialog';
 import {User} from '../../types/userData';
 import { DataSource } from '@angular/cdk/collections';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
+import { ExelService } from '../../../services/exel.service';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -15,7 +15,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,private apiService: ApiService,private _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog,private apiService: ApiService,private _snackBar: MatSnackBar,private excelService: ExelService) { }
   // openDialog() {
   //   this.modalService.openWideCardDialog();
   // }
@@ -138,7 +138,17 @@ delete(familyId: string): void {
   }
 
   printDoc(): void{
-    console.log("printing initiated")
+    let jsonData= this.aggregatedUsers[0][1];
+    this.excelService.convertJsonToXlsx(jsonData).subscribe((blob: Blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'output.xlsx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    });
   }
 
 }
