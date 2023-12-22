@@ -137,8 +137,31 @@ delete(familyId: string): void {
     );
   }
 
-  printDoc(): void{
-    let jsonData= this.aggregatedUsers[0][1];
+  printDoc(): void {
+    let allData: User[] = [];
+  
+    for (let i = 0; i < this.aggregatedUsers.length; i++) {
+      let jsonData = this.aggregatedUsers[i][1];
+  
+      // Filter out the _id property from each set of rows
+      jsonData = jsonData.map(({ misc, ...rest }) => rest);
+  
+      // Add the current set of rows to allData
+      allData = allData.concat(jsonData);
+  
+      // Add 5 empty rows after each set of rows (excluding the last set)
+      if (i < this.aggregatedUsers.length - 1) {
+        for (let j = 0; j < 5; j++) {
+          allData.push({});
+        }
+      }
+    }
+  
+    // Download the final aggregated data
+    this.downloadAllData(allData);
+  }
+  
+  private downloadAllData(jsonData: User[]): void {
     this.excelService.convertJsonToXlsx(jsonData).subscribe((blob: Blob) => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -150,6 +173,8 @@ delete(familyId: string): void {
       window.URL.revokeObjectURL(url);
     });
   }
+  
+  
 
 }
 // @Component({
