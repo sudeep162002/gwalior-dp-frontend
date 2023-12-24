@@ -7,6 +7,10 @@ import {User} from '../../types/userData';
 import { DataSource } from '@angular/cdk/collections';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ExelService } from '../../../services/exel.service';
+// import {PdfService} from '../../../services/pdf-service.service';
+import { saveAs } from 'file-saver';
+import { PdfService } from '../../../services/pdf-service.service'
+import * as html2pdf from 'html2pdf.js';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -15,20 +19,12 @@ import { ExelService } from '../../../services/exel.service';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,private apiService: ApiService,private _snackBar: MatSnackBar,private excelService: ExelService) { }
-  // openDialog() {
-  //   this.modalService.openWideCardDialog();
-  // }
-  // cardArray = [
-    
-  //   // Add more cards as needed
-  // ];
-
+  constructor(public dialog: MatDialog,private apiService: ApiService,private _snackBar: MatSnackBar,private excelService: ExelService,private pdfService: PdfService) { }
+ 
   cardArray : User[]=[];
   searchTerm: string = ''; // Add a property for the search term
   filteredCardArray: any[] = [];
   aggregatedUsersObject: { [userId: string]: User[] } = {};
- // Assuming aggregatedUsers is already populated
   aggregatedUsers: [string, User[]][]; 
 
 
@@ -50,10 +46,17 @@ export class LandingPageComponent implements OnInit {
       data: user
     });
 
+
+     
     dialogRef.afterClosed().subscribe(result => {
       // Handle the result data sent from the dialog
       // console.log('Dialog closed with result:', result);
-      if(result && result.resultData)this.openSnackBar(result.resultData,'close!');
+      if(result && result.resultData=='Data successfully updated.'){
+
+        // console.log(result.resultData);
+        // console.log(this.aggregatedUsers)
+        this.openSnackBar(result.resultData,'close!');
+      }
     });
   }
   ngOnInit(): void {
@@ -78,7 +81,7 @@ export class LandingPageComponent implements OnInit {
   
     // Check if the result is NaN (Not a Number)
     if (isNaN(floatValue)) {
-      console.error(`Failed to convert "${value}" to a float.`);
+      // console.error(`Failed to convert "${value}" to a float.`);
       return null; // or handle the error in another way
     }
   
@@ -103,6 +106,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   Familytotal(card: any): number {
+    // console.log('this is family tptal card', card)
     let total: number;
     // Your calculation logic here
     total = 0; // Placeholder value, replace with your logic
@@ -119,16 +123,6 @@ delete(familyId: string): void {
   this.aggregatedUsers = this.aggregatedUsers.filter(([id, _]) => id !== familyId);
 }
 
-  // aggrigateData(arr:User[]){
-  //   let myMap = new Map();
-  //   arr.forEach(value=> {
-  //     console.log("its starting")
-  //     // value.fullName;
-  //     console.log(value.fullName)
-  //   });
-  // }
-
-
 
   search(): void {
     // Perform search logic based on the searchTerm
@@ -138,76 +132,106 @@ delete(familyId: string): void {
     );
   }
 
-  printDoc(): void {
-    let allData: User[] = [];
-  
-    for (let i = 0; i < this.aggregatedUsers.length; i++) {
-      let jsonData = this.aggregatedUsers[i][1];
-  
-      // Filter out the _id property from each set of rows
-      jsonData = jsonData.map(({ misc, ...rest }) => rest);
-  
-      // Add the current set of rows to allData
-      allData = allData.concat(jsonData);
-  
-      // Add 5 empty rows after each set of rows (excluding the last set)
-      if (i < this.aggregatedUsers.length - 1) {
-        for (let j = 0; j < 3; j++) {
-          if (j === 2) {
-            // When j == 2, add column names row
-           let columnNames = Object.keys(jsonData[0]);
-            const columnNamesRow: any = {};
-            columnNames.forEach(column => {
-              columnNamesRow[column] = column;
-            });
-            allData.push(columnNamesRow);
-          }
-          else allData.push({});
 
-        }
+  createPdfHtml(jsonData: any[]): string {
+    // console.log(jsonData);
+    let html = '<html><body>';
+  
+    jsonData.forEach((rowArray, index) => {
+      const familyCodeRow = rowArray.find((row) => row['Family Code No.']);
+  
+      if (familyCodeRow && familyCodeRow['Family Code No.']) {
+        html += `<div style="margin-top: 10px;">Family Code No.: ${familyCodeRow['Family Code No.']}</div>`;
       }
   
-      // Append total property to each User object
-      jsonData.forEach(user => {
-        user.total = this.total(user);
-      });
-    }
+      if (rowArray.length > 0) {
+        // Regular data table
+        html += '<table style="width:100%; border-collapse: collapse; margin-top: 10px;">';
   
-    // Download the final aggregated data
-    this.downloadAllData(allData);
-  }
+        // html += `<tr>${Object.keys(rowArray[0]).filter(key => key !== '_id' && key !== 'Family Code No.' && key !== 'userId'&& key !== '__v').map(
+        //   (key) => `<th style="border: 1px solid #000; padding: 5px;">${key}</th>`
+        // ).join('')}</tr>`;
   
+        // rowArray.forEach((row) => {
+        //   // Add "Total" property to each row
+        //   row['Total'] = this.total(row);
   
-  private downloadAllData(jsonData: User[]): void {
-    this.excelService.convertJsonToXlsx(jsonData).subscribe((blob: Blob) => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'output.xlsx';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+        //    `<tr>${Object.entries(row).filter(([key]) => key !== '_id' && key !== 'Family Code No.' && key !== 'userId' && key !== '__v').map(
+        //     ([key, value]) => `<td style="border: 1px solid #000; padding: 5px;">${value}</td>`
+        //   ).join('')}</tr>`;
+        // });
+  
+        html += '</table>';
+  
+        // Updated data table
+        html += '<table style="width:100%; border-collapse: collapse;">';
+  
+        html += `<tr>${Object.keys(rowArray[0]).filter(key => key !== '_id' && key !== 'Family Code No.' && key !== 'userId' && key !== '__v').map(
+          (key) => `<th style="border: 1px solid #000; padding: ${key === 'fullName' || key === 'ritwickName' ? '40px' : '5px'};">${key}</th>`
+        ).join('')}</tr>`;
+        
+  
+        rowArray.forEach((row) => {
+          html += `<tr>${Object.entries(row).filter(([key]) => key !== '_id' && key !== 'Family Code No.' && key !== 'userId'&& key !== '__v').map(
+            ([key, value]) => `<td style="border: 1px solid #000; padding: 5px;">${value}</td>`
+          ).join('')}</tr>`;
+        });
+        html+=`<td style="border: 1px solid #000; padding: 5px;">Total :</td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;"></td>`;
+        html+=`<td style="border: 1px solid #000; padding: 5px;">${this.Familytotal(rowArray)}</td>`
+  
+        html += '</table>';
+      }
+      // console.log('this is row array',rowArray)
+  
+      // Add blank space of three lines between different families
+      if (index < jsonData.length - 1) {
+        html += '<br><br><br>';
+      }
     });
+  
+    html += '</body></html>';
+  
+    
+    return html;
   }
   
+  
+ downloadPdf(pdfContent: string, filename: string): void {
+    const pdfOptions = {
+      margin: 10,
+      filename: filename,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2,width: 1100},
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().from(pdfContent).set(pdfOptions).save();
+    
+  }
+  
+  printDoc(): void {
+    // console.log('this is agrigate user',this.aggregatedUsers)
+    const allData = this.aggregatedUsers.map(([familyCode, jsonData]) => [...jsonData, { 'Family Code No.': familyCode }]);
+    
+    const htmlContent = this.createPdfHtml(allData);
+    
+    // const pdfContent = createPdfHtml(jsonData);
+    this.downloadPdf(htmlContent, 'your-pdf-filename.pdf');
+    
+  }
   
 
 }
-// @Component({
-//   selector: 'sucess-snackbar',
-//   templateUrl: 'sucess-snackbar.html',
-//   styles: [
-//     `
-//     .example-pizza-party {
-//       color: green;
-//     }
-//   `,
-//   ],
-//   standalone: true,
-// })
-// export class PizzaPartyComponent {}
-
 
 
 
