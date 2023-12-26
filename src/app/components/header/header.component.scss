@@ -14,6 +14,11 @@
     font-weight: bold;
   }
   
+.nav-menu{
+  display: flex;
+  flex-direction: row;
+}
+
   .nav-menu a {
     color: #ffffff; /* White text color for navigation links */
     text-decoration: none;

@@ -3,44 +3,78 @@
 
 <form [formGroup]="familyForm" (ngSubmit)="onSubmit()">
 
-    <label for="fullName">Full Name:</label>
+    <label for="fullName">Full Name: *</label>
     <input type="text" id="fullName" formControlName="fullName" required>
+    
   
     <label for="ritwickName">Ritwick Name:</label>
     <input type="text" id="ritwickName" formControlName="ritwickName">
   
     <label for="swastyayani">Swastyayani:</label>
     <input type="text" id="swastyayani" formControlName="swastyayani">
+    <div *ngIf="familyForm.get('swastyayani').hasError('pattern') && familyForm.get('swastyayani').touched" class="error-message">
+      Swastyayani must be a number
+    </div>
   
     <label for="istavrity">Istavrity:</label>
     <input type="text" id="istavrity" formControlName="istavrity">
+    <div *ngIf="familyForm.get('istavrity').hasError('pattern') && familyForm.get('istavrity').touched" class="error-message">
+      istavrity must be a number
+    </div>
   
     <label for="acharyavrity">Acharyavrity:</label>
     <input type="text" id="acharyavrity" formControlName="acharyavrity">
+    <div *ngIf="familyForm.get('acharyavrity').hasError('pattern') && familyForm.get('acharyavrity').touched" class="error-message">
+      acharyavrity must be a number
+    </div>
   
     <label for="dakshina">Dakshina:</label>
     <input type="text" id="dakshina" formControlName="dakshina">
+    <div *ngIf="familyForm.get('dakshina').hasError('pattern') && familyForm.get('dakshina').touched" class="error-message">
+      dakshina must be a number
+    </div>
   
     <label for="sangathani">Sangathani:</label>
     <input type="text" id="sangathani" formControlName="sangathani">
+    <div *ngIf="familyForm.get('sangathani').hasError('pattern') && familyForm.get('sangathani').touched" class="error-message">
+      sangathani must be a number
+    </div>
   
     <label for="ritwicki">Ritwicki:</label>
     <input type="text" id="ritwicki" formControlName="ritwicki">
+    <div *ngIf="familyForm.get('ritwicki').hasError('pattern') && familyForm.get('ritwicki').touched" class="error-message">
+      ritwicki must be a number
+    </div>
   
     <label for="proname">Proname:</label>
     <input type="text" id="proname" formControlName="proname">
+    <div *ngIf="familyForm.get('proname').hasError('pattern') && familyForm.get('proname').touched" class="error-message">
+      proname must be a number
+    </div>
   
     <label for="anandabazar">Anandabazar:</label>
     <input type="text" id="anandabazar" formControlName="anandabazar">
+    <div *ngIf="familyForm.get('anandabazar').hasError('pattern') && familyForm.get('anandabazar').touched" class="error-message">
+      anandabazar must be a number
+    </div>
   
     <label for="srimandir">Srimandir:</label>
     <input type="text" id="srimandir" formControlName="srimandir">
+    <div *ngIf="familyForm.get('srimandir').hasError('pattern') && familyForm.get('srimandir').touched" class="error-message">
+      srimandir must be a number
+    </div>
   
     <label for="parivrity">Parivrity:</label>
     <input type="text" id="parivrity" formControlName="parivrity">
+    <div *ngIf="familyForm.get('parivrity').hasError('pattern') && familyForm.get('parivrity').touched" class="error-message">
+      parivrity must be a number
+    </div>
   
     <label for="misc">Miscellaneous:</label>
     <input type="text" id="misc" formControlName="misc">
+    <div *ngIf="familyForm.get('misc').hasError('pattern') && familyForm.get('misc').touched" class="error-message">
+      misc must be a number
+    </div>
   
     <button type="submit">Submit</button>
   </form>
