@@ -12,6 +12,10 @@
   .logo {
     font-size: 24px;
     font-weight: bold;
+    background-image: url('../../../favicon.ico'); /* Set the path to your image */
+    background-size: cover; /* Adjust the background size */
+    height: 46px;
+    width: 63px;
   }
   
 .nav-menu{
