@@ -3,7 +3,7 @@ import { CardDetailsComponent } from '../card-details/card-details.component';
 import {EditComponent} from '../edit/edit.component';
 import { ApiService } from '../../../services/api.service';
 import {MatDialogRef,MatDialog } from '@angular/material/dialog';
-import {User} from '../../types/userData';
+import {User,FamilyObject} from '../../types/userData';
 import { DataSource } from '@angular/cdk/collections';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ExelService } from '../../../services/exel.service';
@@ -88,7 +88,7 @@ export class LandingPageComponent implements OnInit {
     return floatValue;
   }
   
-  total(card: any): number {
+  total(card: User): number {
     let total: number;
     total = 0; // Or whatever value you want to assign to total
     // console.log('Individual total is', card);
@@ -105,7 +105,7 @@ export class LandingPageComponent implements OnInit {
     return total;
   }
 
-  Familytotal(card: any): number {
+  Familytotal(card: User[]): number {
     // console.log('this is family tptal card', card)
     let total: number;
     // Your calculation logic here
@@ -126,15 +126,16 @@ delete(familyId: string): void {
 
   search(): void {
     // Perform search logic based on the searchTerm
+    // console.log('the array is filteredCardArray',this.filteredCardArray)
     this.filteredCardArray = this.cardArray.filter(card =>
       card.userId.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       card.fullName.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
-
-  createPdfHtml(jsonData: any[]): string {
-    // console.log(jsonData);
+  
+  createPdfHtml(jsonData: any): string {
+    console.log('this is html json data',jsonData);
     let html = '<html><body>';
   
     jsonData.forEach((rowArray, index) => {

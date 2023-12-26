@@ -15,3 +15,8 @@ export type User = {
     misc?: string;
     total?:number;
   };
+
+  export type FamilyObject = {
+    users: User[];
+    familyCode: string;
+  };
