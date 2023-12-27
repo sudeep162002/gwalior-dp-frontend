@@ -4,12 +4,13 @@ import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig } from 'axios';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private baseURL = 'http://localhost:3000'; // Replace with your API base URL
+  private baseURL = 'https://ims-backend-c5de.onrender.com/'; // Replace with your API base URL
   private authToken = 'Sudeep@16'; // Replace with your actual authorization token
 
   constructor() { }
