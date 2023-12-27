@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  private baseURL = 'https://ims-backend-c5de.onrender.com/'; // Replace with your API base URL
+  private baseURL = 'https://ims-backend-c5de.onrender.com'; // Replace with your API base URL
   private authToken = 'Sudeep@16'; // Replace with your actual authorization token
 
   constructor() { }
