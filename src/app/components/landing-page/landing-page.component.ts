@@ -11,6 +11,8 @@ import { ExelService } from '../../../services/exel.service';
 import { saveAs } from 'file-saver';
 import { PdfService } from '../../../services/pdf-service.service'
 import * as html2pdf from 'html2pdf.js';
+
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -71,7 +73,7 @@ export class LandingPageComponent implements OnInit {
               this.aggregatedUsersObject[userId].push(user);
         });
         this.aggregatedUsers=Object.entries( this.aggregatedUsersObject);
-        // console.log(this.aggregatedUsers);
+        // console.log('aggregator user is this',this.aggregatedUsers);
       });
 
       
@@ -126,6 +128,7 @@ delete(familyId: string): void {
 
   search(): void {
     // Perform search logic based on the searchTerm
+    // console.log('aggregator user is this',this.aggregatedUsers);
     // console.log('the array is filteredCardArray',this.filteredCardArray)
     this.filteredCardArray = this.cardArray.filter(card =>
       card.userId.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
