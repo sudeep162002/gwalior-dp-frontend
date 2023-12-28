@@ -7,7 +7,7 @@ RUN apk --no-cache add git
 WORKDIR /app
 
 # Install Angular CLI globally
-RUN npm install -g @angular/cli@11
+RUN npm install -g @angular/cli@7.3.10
 
 # Copy package.json and package-lock.json to the working directory
 COPY package.json package-lock.json ./
