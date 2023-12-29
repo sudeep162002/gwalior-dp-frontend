@@ -39,7 +39,8 @@ export class EditComponent implements OnInit {
       anandabazar: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       srimandir: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       parivrity: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      misc: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
+      misc: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      address: ['', Validators.required]
     });
   }
   openSnackBar(message: string, action: string) {

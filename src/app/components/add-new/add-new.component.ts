@@ -38,7 +38,8 @@ export class AddNewComponent implements OnInit {
       anandabazar: ['0', Validators.required],
       srimandir: ['0', Validators.required],
       parivrity: ['0', Validators.required],
-      misc: ['0', Validators.required]
+      misc: ['0', Validators.required],
+      address: ['', Validators.required]
     });
   }
   openSnackBar(message: string, action: string) {

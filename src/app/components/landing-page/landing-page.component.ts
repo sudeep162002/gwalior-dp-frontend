@@ -142,10 +142,15 @@ delete(familyId: string): void {
     let html = '<html><body>';
   
     jsonData.forEach((rowArray, index) => {
-      const familyCodeRow = rowArray.find((row) => row['Family Code No.']);
+      const familyCodeRow  = rowArray.find((row) => row['Family Code No.']);
+      // const familyCodeRow = temp.find((row) => row['address']);
   
       if (familyCodeRow && familyCodeRow['Family Code No.']) {
-        html += `<div style="margin-top: 10px;">Family Code No.: ${familyCodeRow['Family Code No.']}</div>`;
+        html += `<div style="margin-top: 10px;">Family Code No.: ${familyCodeRow['Family Code No.']}                 Adress is: ${rowArray[0].address}</div>`;
+      }
+
+      if (rowArray[0].address) {
+        html += `<div style="margin-top: 10px;">Adress is: ${rowArray[0].address}</div>`;
       }
   
       if (rowArray.length > 0) {
@@ -170,13 +175,13 @@ delete(familyId: string): void {
         // Updated data table
         html += '<table style="width:100%; border-collapse: collapse;">';
   
-        html += `<tr>${Object.keys(rowArray[0]).filter(key => key !== '_id' && key !== 'Family Code No.' && key !== 'userId' && key !== '__v').map(
+        html += `<tr>${Object.keys(rowArray[0]).filter(key => key !== '_id' && key !== 'Family Code No.' && key !== 'userId' && key !== '__v'&& key !== 'address').map(
           (key) => `<th style="border: 1px solid #000; padding: ${key === 'fullName' || key === 'ritwickName' ? '40px' : '5px'};">${key}</th>`
         ).join('')}</tr>`;
         
   
         rowArray.forEach((row) => {
-          html += `<tr>${Object.entries(row).filter(([key]) => key !== '_id' && key !== 'Family Code No.' && key !== 'userId'&& key !== '__v').map(
+          html += `<tr>${Object.entries(row).filter(([key]) => key !== '_id' && key !== 'Family Code No.' && key !== 'userId'&& key !== '__v'&& key !== 'address').map(
             ([key, value]) => `<td style="border: 1px solid #000; padding: 5px;">${value}</td>`
           ).join('')}</tr>`;
         });
