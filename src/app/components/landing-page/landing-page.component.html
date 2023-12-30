@@ -4,7 +4,7 @@
   <button class="back-button" mat-icon-button (click)="goBack()" *ngIf="cc>=1">
     <i class="fas fa-arrow-left"></i>
   </button>
-  <input class="search-input" type="text" [(ngModel)]="searchTerm" placeholder="Family-Id/member-Name...." (keyup.enter)="onEnterKeyPress($event)">
+  <input class="search-input" type="text" [(ngModel)]="searchTerm" placeholder="Member-Name...." (keyup.enter)="onEnterKeyPress($event)">
   <button class="search-button" (click)="search()">
     <i class="fas fa-search"></i> <!-- Use "fas" for solid icons, or "far" for regular icons -->
   </button>
