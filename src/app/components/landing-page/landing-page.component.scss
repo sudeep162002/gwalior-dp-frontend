@@ -53,6 +53,7 @@ body{
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 50px;
+  gap: 1%
 }
 
 .search-input {
@@ -141,4 +142,17 @@ body{
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+.back-button{
+  background-color: #8fb339;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 23px;
+}

@@ -28,7 +28,7 @@ export class LandingPageComponent implements OnInit {
   filteredCardArray: any[] = [];
   aggregatedUsersObject: { [userId: string]: User[] } = {};
   aggregatedUsers: [string, User[]][]; 
-
+  cc: number=0;
 
 
   openSnackBar(message: string, action: string) {
@@ -125,17 +125,44 @@ delete(familyId: string): void {
   this.aggregatedUsers = this.aggregatedUsers.filter(([id, _]) => id !== familyId);
 }
 
+// searchTerm: string = '';
+
 
   search(): void {
     // Perform search logic based on the searchTerm
-    // console.log('aggregator user is this',this.aggregatedUsers);
-    // console.log('the array is filteredCardArray',this.filteredCardArray)
-    this.filteredCardArray = this.cardArray.filter(card =>
-      card.userId.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      card.fullName.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    // const input = this.searchTerm.trim();
+    this.cc+=1;
+    this.aggregatedUsers = this.aggregatedUsers.filter(card => {
+      let matchFound = false;
+    
+      card[1].forEach(value => {
+        if (value.fullName.toLowerCase().includes(this.searchTerm.toLowerCase())) {
+          matchFound = true;
+        }
+      });
+    
+      return matchFound;
+    });
+    
+    
+
+    console.log('filtered array is :', this.filteredCardArray);
+  }
+  onEnterKeyPress(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.search();
+    }
   }
 
+  goBack(): void {
+    this.cc=0;
+    
+        this.aggregatedUsers=Object.entries( this.aggregatedUsersObject);
+        // console.log('aggregator user is this',this.aggregatedUsers);
+      
+    // Use the Angular Router to navigate back
+    
+  }
   
   createPdfHtml(jsonData: any): string {
     console.log('this is html json data',jsonData);
