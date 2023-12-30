@@ -1,24 +1,49 @@
-# Ims
+# Istavrity Management System (IMS)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.11.
+IMS is a platform designed to efficiently handle the Istavrity of multiple families. It is built using TypeScript, Angular, Docker, GitHub Actions for CI/CD, and Docker Hub for development.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- **Family Istavrity Management:** Seamlessly manage Istavrity for families with a user-friendly interface.
+- **TypeScript and Angular:** Utilize the power of TypeScript and Angular for a robust and scalable front-end.
+- **Dockerized:** Containerized using Docker for easy deployment and consistency across environments.
+- **CI/CD with GitHub Actions:** Automate the build and deployment process using GitHub Actions.
+- **Development Workflow with Docker Hub:** Easily manage and share Docker images using Docker Hub.
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Frontend:** Angular with TypeScript
+- **Backend:** Express with Type script
+- **Containerization:** Docker
+- **CI/CD:** GitHub Actions
+- **Container Registry:** Docker Hub
 
-## Build
+## Getting Started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Prerequisites
 
-## Running unit tests
+- Node.js and npm installed
+- Docker installed
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation
 
-## Running end-to-end tests
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/ims.git
+
+ ```
+docker-compose -f db-docker-compose.yml up
+```
+
+```
+docker-compose build
+```
+
+```
+docker-compose up  
+```
+   
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
