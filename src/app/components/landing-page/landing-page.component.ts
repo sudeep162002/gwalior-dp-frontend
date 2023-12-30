@@ -135,9 +135,11 @@ delete(familyId: string): void {
     this.aggregatedUsers = this.aggregatedUsers.filter(card => {
       let matchFound = false;
     
-      return card[1].some(value =>
-        value.fullName.toLowerCase().includes(input)
-      );
+      card[1].forEach(value => {
+        if (value.fullName.toLowerCase().includes(input)) {
+          matchFound = true;
+        }
+      });
     
       return matchFound;
     });
