@@ -173,12 +173,12 @@ delete(familyId: string): void {
       // const familyCodeRow = temp.find((row) => row['address']);
   
       if (familyCodeRow && familyCodeRow['Family Code No.']) {
-        html += `<div style="margin-top: 10px;">Family Code No.: ${familyCodeRow['Family Code No.']}                 Adress is: ${rowArray[0].address}</div>`;
+        html += `<div <strong style="color: #333;">Family Code No.: ${familyCodeRow['Family Code No.']}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address is: ${rowArray[0].address}</div>`;
       }
 
-      if (rowArray[0].address) {
-        html += `<div style="margin-top: 10px;">Adress is: ${rowArray[0].address}</div>`;
-      }
+      // if (rowArray[0].address) {
+      //   html += `<div style="margin-top: 10px;">Adress is: ${rowArray[0].address}</div>`;
+      // }
   
       if (rowArray.length > 0) {
         // Regular data table
@@ -262,10 +262,14 @@ delete(familyId: string): void {
     const htmlContent = this.createPdfHtml(allData);
     
     // const pdfContent = createPdfHtml(jsonData);
-    this.downloadPdf(htmlContent, 'your-pdf-filename.pdf');
+    this.downloadPdf(htmlContent, `istvirty-${this.getCurrentMonth().toLowerCase()}.pdf`);
     
   }
-  
+ getCurrentMonth() {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const currentDate = new Date();
+    return months[currentDate.getMonth()];
+  }
 
 }
 
