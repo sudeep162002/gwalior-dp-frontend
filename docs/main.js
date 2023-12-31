@@ -251,16 +251,37 @@ class EditComponent {
             }
         });
     }
+    onInputChange(event) {
+        // Access the value of the input field
+        const inputValue = event.target.value;
+        // Do something with the input value, e.g., log it
+        console.log('Input value:', this.family[1]);
+        this.family[1].forEach(mem => {
+            if (mem.fullName.toLowerCase().includes(inputValue)) {
+                Object.keys(mem).forEach(val => {
+                    if (val != 'fullName') {
+                        const control = this.familyForm.get(val);
+                        if (control) {
+                            control.setValue(mem[val]);
+                        }
+                    }
+                });
+            }
+        });
+        // console.log(this.familyForm)
+    }
 }
 EditComponent.ɵfac = function EditComponent_Factory(t) { return new (t || EditComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_services_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_5__["Location"])); };
-EditComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: EditComponent, selectors: [["app-edit"]], decls: 58, vars: 13, consts: [[1, "form-div"], [3, "formGroup", "ngSubmit"], ["for", "fullName"], ["type", "text", "id", "fullName", "formControlName", "fullName", "required", ""], ["for", "ritwickName"], ["type", "text", "id", "ritwickName", "formControlName", "ritwickName"], ["for", "swastyayani"], ["type", "text", "id", "swastyayani", "formControlName", "swastyayani"], ["class", "error-message", 4, "ngIf"], ["for", "istavrity"], ["type", "text", "id", "istavrity", "formControlName", "istavrity"], ["for", "acharyavrity"], ["type", "text", "id", "acharyavrity", "formControlName", "acharyavrity"], ["for", "dakshina"], ["type", "text", "id", "dakshina", "formControlName", "dakshina"], ["for", "sangathani"], ["type", "text", "id", "sangathani", "formControlName", "sangathani"], ["for", "ritwicki"], ["type", "text", "id", "ritwicki", "formControlName", "ritwicki"], ["for", "proname"], ["type", "text", "id", "proname", "formControlName", "proname"], ["for", "anandabazar"], ["type", "text", "id", "anandabazar", "formControlName", "anandabazar"], ["for", "srimandir"], ["type", "text", "id", "srimandir", "formControlName", "srimandir"], ["for", "parivrity"], ["type", "text", "id", "parivrity", "formControlName", "parivrity"], ["for", "misc"], ["type", "text", "id", "misc", "formControlName", "misc"], ["for", "address"], ["type", "text", "id", "address", "formControlName", "address"], ["type", "submit"], [1, "error-message"]], template: function EditComponent_Template(rf, ctx) { if (rf & 1) {
+EditComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: EditComponent, selectors: [["app-edit"]], decls: 58, vars: 13, consts: [[1, "form-div"], [3, "formGroup", "ngSubmit"], ["for", "fullName"], ["type", "text", "id", "fullName", "formControlName", "fullName", "required", "", 3, "input"], ["for", "ritwickName"], ["type", "text", "id", "ritwickName", "formControlName", "ritwickName"], ["for", "swastyayani"], ["type", "text", "id", "swastyayani", "formControlName", "swastyayani"], ["class", "error-message", 4, "ngIf"], ["for", "istavrity"], ["type", "text", "id", "istavrity", "formControlName", "istavrity"], ["for", "acharyavrity"], ["type", "text", "id", "acharyavrity", "formControlName", "acharyavrity"], ["for", "dakshina"], ["type", "text", "id", "dakshina", "formControlName", "dakshina"], ["for", "sangathani"], ["type", "text", "id", "sangathani", "formControlName", "sangathani"], ["for", "ritwicki"], ["type", "text", "id", "ritwicki", "formControlName", "ritwicki"], ["for", "proname"], ["type", "text", "id", "proname", "formControlName", "proname"], ["for", "anandabazar"], ["type", "text", "id", "anandabazar", "formControlName", "anandabazar"], ["for", "srimandir"], ["type", "text", "id", "srimandir", "formControlName", "srimandir"], ["for", "parivrity"], ["type", "text", "id", "parivrity", "formControlName", "parivrity"], ["for", "misc"], ["type", "text", "id", "misc", "formControlName", "misc"], ["for", "address"], ["type", "text", "id", "address", "formControlName", "address"], ["type", "submit"], [1, "error-message"]], template: function EditComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "form", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("ngSubmit", function EditComponent_Template_form_ngSubmit_1_listener() { return ctx.onSubmit(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](2, "label", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "Full Name: *");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](4, "input", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "input", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("input", function EditComponent_Template_input_input_4_listener($event) { return ctx.onInputChange($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](5, "label", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](6, "Ritwick Name:");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -703,17 +724,17 @@ class AddNewComponent {
             userId: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
             fullName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
             ritwickName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            swastyayani: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            istavrity: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            acharyavrity: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            dakshina: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            sangathani: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            ritwicki: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            proname: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            anandabazar: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            srimandir: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            parivrity: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
-            misc: ['0', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            swastyayani: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            istavrity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            acharyavrity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            dakshina: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            sangathani: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            ritwicki: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            proname: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            anandabazar: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            srimandir: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            parivrity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
+            misc: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
             address: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required]
         });
     }
@@ -1107,11 +1128,11 @@ class LandingPageComponent {
             const familyCodeRow = rowArray.find((row) => row['Family Code No.']);
             // const familyCodeRow = temp.find((row) => row['address']);
             if (familyCodeRow && familyCodeRow['Family Code No.']) {
-                html += `<div style="margin-top: 10px;">Family Code No.: ${familyCodeRow['Family Code No.']}                 Adress is: ${rowArray[0].address}</div>`;
+                html += `<div <strong style="color: #333;">Family Code No.: ${familyCodeRow['Family Code No.']}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Address is: ${rowArray[0].address}</div>`;
             }
-            if (rowArray[0].address) {
-                html += `<div style="margin-top: 10px;">Adress is: ${rowArray[0].address}</div>`;
-            }
+            // if (rowArray[0].address) {
+            //   html += `<div style="margin-top: 10px;">Adress is: ${rowArray[0].address}</div>`;
+            // }
             if (rowArray.length > 0) {
                 // Regular data table
                 html += '<table style="width:100%; border-collapse: collapse; margin-top: 10px;">';
@@ -1171,7 +1192,12 @@ class LandingPageComponent {
         const allData = this.aggregatedUsers.map(([familyCode, jsonData]) => [...jsonData, { 'Family Code No.': familyCode }]);
         const htmlContent = this.createPdfHtml(allData);
         // const pdfContent = createPdfHtml(jsonData);
-        this.downloadPdf(htmlContent, 'your-pdf-filename.pdf');
+        this.downloadPdf(htmlContent, `istvirty-${this.getCurrentMonth().toLowerCase()}.pdf`);
+    }
+    getCurrentMonth() {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const currentDate = new Date();
+        return months[currentDate.getMonth()];
     }
 }
 LandingPageComponent.ɵfac = function LandingPageComponent_Factory(t) { return new (t || LandingPageComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_services_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_6__["MatSnackBar"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_services_exel_service__WEBPACK_IMPORTED_MODULE_7__["ExelService"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_services_pdf_service_service__WEBPACK_IMPORTED_MODULE_8__["PdfService"])); };
