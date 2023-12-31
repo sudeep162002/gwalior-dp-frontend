@@ -14,11 +14,14 @@ import { Location } from '@angular/common';
 })
 export class EditComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) public family: any,private apiService: ApiService,private dialogRef: MatDialogRef<EditComponent>,private _snackBar: MatSnackBar,private location: Location) {
+  constructor(private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) public family: User,private apiService: ApiService,private dialogRef: MatDialogRef<EditComponent>,private _snackBar: MatSnackBar,private location: Location) {
     this.createForm();
   }
 
+
+  
   ngOnInit(): void {
+    
   }
 
   familyForm: FormGroup;
@@ -76,6 +79,30 @@ export class EditComponent implements OnInit {
       });
   }
 
+  onInputChange(event: Event): void {
+    // Access the value of the input field
+    const inputValue = (event.target as HTMLInputElement).value;
+    
+    // Do something with the input value, e.g., log it
+    console.log('Input value:', this.family[1]);
+    this.family[1].forEach(mem => {
+      if (mem.fullName.toLowerCase().includes(inputValue)) {
+        Object.keys(mem).forEach(val => {
+          if(val!='fullName'){
+            const control = this.familyForm.get(val);
+          if (control) {
+            control.setValue(mem[val]);
+          }
+          }
+          
 
+        });
+        
+      }
+    });
+    
+    // console.log(this.familyForm)
+      
+  }
   
 }
