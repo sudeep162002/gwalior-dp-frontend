@@ -2,8 +2,8 @@ name: Publish Docker image to Ghrc
 
 
 on:
-  push:
-    branches: ['main']
+  push
+
 
 jobs:
   push_to_registry:
