@@ -3,8 +3,10 @@
 
 <form [formGroup]="familyForm" (ngSubmit)="onSubmit()">
 
+    <!-- your-component.component.html -->
     <label for="fullName">Full Name: *</label>
-    <input type="text" id="fullName" formControlName="fullName" required>
+    <input type="text" id="fullName" formControlName="fullName" required (input)="onInputChange($event)">
+
     
   
     <label for="ritwickName">Ritwick Name:</label>
