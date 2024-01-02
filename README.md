@@ -1,3 +1,11 @@
+## Running build before pusing to dev branch and testing gh pages
+
+Run `ng build --output-path docs --base-href https://sudeep162002.github.io/gwalior-dp-frontend/`
+
+
+
+
+
 # Ims
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.11.
