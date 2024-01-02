@@ -81,7 +81,7 @@ export class EditComponent implements OnInit {
 
   onInputChange(event: Event): void {
     // Access the value of the input field
-    const inputValue = (event.target as HTMLInputElement).value;
+    const inputValue = (event.target as HTMLInputElement).value.toLowerCase();
     
     // Do something with the input value, e.g., log it
     console.log('Input value:', this.family[1]);

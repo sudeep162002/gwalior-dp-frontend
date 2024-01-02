@@ -1,4 +1,10 @@
+# Ims
+=======
 # Istavrity Management System (IMS)
+
+## Running build before pusing to dev branch and testing gh pages
+
+Run `ng build --output-path docs --base-href https://sudeep162002.github.io/gwalior-dp-frontend/`
 
 IMS is a platform designed to efficiently handle the Istavrity of multiple families. It is built using TypeScript, Angular, Docker, GitHub Actions for CI/CD, and Docker Hub for development.
 

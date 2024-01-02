@@ -130,7 +130,7 @@ delete(familyId: string): void {
 
   search(): void {
     // Perform search logic based on the searchTerm
-    const input = this.searchTerm.trim();
+    const input = this.searchTerm.trim().toLowerCase();
     this.cc+=1;
     this.aggregatedUsers = this.aggregatedUsers.filter(card => {
       let matchFound = false;
