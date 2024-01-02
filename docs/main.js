@@ -253,7 +253,7 @@ class EditComponent {
     }
     onInputChange(event) {
         // Access the value of the input field
-        const inputValue = event.target.value;
+        const inputValue = event.target.value.toLowerCase();
         // Do something with the input value, e.g., log it
         console.log('Input value:', this.family[1]);
         this.family[1].forEach(mem => {
@@ -1097,7 +1097,7 @@ class LandingPageComponent {
     // searchTerm: string = '';
     search() {
         // Perform search logic based on the searchTerm
-        const input = this.searchTerm.trim();
+        const input = this.searchTerm.trim().toLowerCase();
         this.cc += 1;
         this.aggregatedUsers = this.aggregatedUsers.filter(card => {
             let matchFound = false;
